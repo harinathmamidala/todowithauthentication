@@ -1,0 +1,271 @@
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+.inputname, .inputpassword {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.buttonL {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonL:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+
+
+
+
+/* The Modal (background) */
+.loginShade {
+   /* Hidden by default */
+  flex: 1;
+  /* Stay in place */
+  z-index: 3; /* Sit on top */
+  left: 0;
+  top: 0;
+   /* Full width */
+  height:700px; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  
+  background-color: rgba(0, 0, 0, 0.255); /* Black w/ opacity */
+  padding-top: 60px;
+  width: 700px;
+}
+
+.loginDiv{
+  display: none;
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Modal Content/Box */
+.login-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  padding:20px;
+  position:relative;
+}
+
+/* The Close Button (x) */
+.closeX {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.closeX:hover,
+.closeX:focus {
+  color: red;
+  cursor: pointer;
+}
+
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.content {
+  margin-top: 26px;
+  margin-bottom: 29px;
+  width: 700px;
+  flex: 1;
+  box-shadow: 8px 8px 9px lightblue;
+  padding:15px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(128, 210, 107, 0.432);
+}
+
+li{
+  word-wrap: break-word;
+  border-radius: 9px;
+  margin: 20px;
+  box-shadow: 6px 6px 9px lightblue;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(128, 210, 107, 0.432);
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: rgb(255, 255, 255);
+  font-size: 18px;
+  transition: 0.2s;
+  z-index: 1;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: rgb(156, 227, 155);
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: rgba(75, 244, 227, 0.358);
+  
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: rgb(0, 110, 6);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3px 8px 3px 8px;
+  margin: 9px 8px 9px 8px ;
+  border-radius: 25px;
+  box-shadow: 4px 4px 7px rgba(169, 193, 202, 0.666);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(210, 107, 107, 0.158);
+  
+}
+
+.close:hover {
+  background-color: #f45f5fc0;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: rgb(46, 153, 51);
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 6px 6px 9px rgb(148, 168, 167);
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+.inputadd {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+  border-radius: 9px 0 0 9px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0 9px 9px 0;
+  height: 39px;
+}
+
+.addBtn:hover {
+  background: rgba(75, 244, 227, 0.358);
+}
+@media(max-width:650px){
+
+  .loginShade{
+    margin:20px;
+  }
+  body{
+
+    display:block;
+  }
+}
