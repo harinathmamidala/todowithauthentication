@@ -18,7 +18,7 @@ export default function Login({loginSuccess,setFilename}) {
       if(!ans) alert("Incorrect username or password")
       else {
         console.log("login successful",name)
-        await setFilename(name)
+        setFilename(name)
         setClicklogin(!clicklogin)
         setDisplayName(name)
         setName("")
