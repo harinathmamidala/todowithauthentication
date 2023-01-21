@@ -1,20 +1,16 @@
 import React from 'react'
 import Todoitem from './Todoitem'
 
-export default function TodoList({array,onDelete}) {
+export default function TodoList({array,onDelete,filename}) {
   
   return (
-    <div>
+    <ul>
      {
-      React.Children.toArray(
-        array.map((obj)=>{
-          return <Todoitem obj={obj} onDelete={onDelete}/>
-        })
-
-      )
-     
-     
+    
+      array.map((obj)=>{
+        return <Todoitem key={obj.id} obj={obj} onDelete={onDelete} filename={filename}/>
+      })
       }
-    </div>
+    </ul>
   )
 }

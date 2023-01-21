@@ -6,7 +6,7 @@ export default function Header({AddTodo}) {
   return (
     <div id={"myDIV"} className="header">
       <h2 style={{margin:"10px"}}>My To Do List</h2>
-      <input type="text" value={input} onChange={(e)=>setInput(e.target.value)} id={"myInput"} placeholder="Title..."/>
+      <input className='inputadd' type="text" value={input} onChange={(e)=>setInput(e.target.value)} id={"myInput"} placeholder="Title..."/>
       <span onClick={()=>AddTodo(input,setInput)}className="addBtn">Add</span>
     </div>
   )

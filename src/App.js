@@ -1,34 +1,62 @@
 import './App.css';
 import Header from './mycomponents/Header';
+import Login from './mycomponents/Login';
 import TodoList from './mycomponents/TodoList';
 import { useEffect, useState } from 'react';
 import { db } from './mycomponents/Firebase';
-import {query,collection,onSnapshot,setDoc,deleteDoc,doc, orderBy} from 'firebase/firestore'
+import {collection,setDoc,deleteDoc,doc, orderBy,getDoc,getDocs} from 'firebase/firestore'
+
 
 function App() {
 
-  console.log("app render")
   const [todos,setTodos]=useState([])
+  const [filename,setFilename]=useState('todos')
 
+  
+  
   useEffect(()=>{
-    const q=query(collection( db ,'todos'),orderBy("id"))
-    const unsubscribe=onSnapshot(q,(querySnapshot)=> {
-      let todoarr=[]
-      querySnapshot.forEach((doc)=>{
-        todoarr.push({...doc.data(),id:doc.id})
-      })
-      setTodos(todoarr)
-    })
-    console.log("getting data....")
-    return ()=>unsubscribe()
-  },[])
 
+    async function fetchData(){
+      let todoarr=[]
+      try{
+        const querySnapshot = await getDocs(collection( db ,filename),orderBy("id"));
+        querySnapshot.forEach((doc) => {
+          if(doc.id!=='0'){
+            console.log(doc.id, " => ", doc.data());
+            todoarr.push({id:doc.id ,...doc.data()})
+          }
+        });
+        setTodos(todoarr)
+      }catch(ele){
+        console.log(ele)
+      }
+      
+    }
+    fetchData();
+    
+    return ()=>filename;
+
+  },[filename])
+  
+
+  const loginSuccess=async(name,password)=>{
+
+      const docRef = doc(db, `${name}`, "0");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data().password===password
+      } else {
+        return false
+      }
+      
+  }
 
   const AddTodo=(todo,setInput)=>{
     if(!todo){
-      alert("enter field")
+      alert("Enter a Todo")
     }else{
-      var id=1;
+      var id=100;
       if(todos.length!==0){
 
         id=Number(todos[todos.length-1].id)+1;
@@ -40,11 +68,10 @@ function App() {
         isCompleted:false
       }
       console.log('adding',{mytodo})
-      const cityRef = doc(db, 'todos',`${mytodo.id}`);
+      
+      const cityRef = doc(db,filename,`${mytodo.id}`);
       setDoc(cityRef, mytodo, { merge: true });
-
-      // addDoc(collection(db, "todos"),{todo:mytodo.todo})
-      // setTodos([...todos,mytodo])
+      setTodos([...todos,mytodo])
     }
     setInput("");
   }
@@ -62,11 +89,13 @@ function App() {
 
 
 
+
+
   return (
    <div className='content'>
+    <Login loginSuccess={loginSuccess} setFilename={setFilename}/>
     <Header AddTodo={AddTodo}/>
-    {/* <Input AddTodo={AddTodo} /> */}
-    <TodoList array={todos} onDelete={onDelete}/>
+    <TodoList array={todos} onDelete={onDelete} filename={filename}/>
    </div>
   );
 }

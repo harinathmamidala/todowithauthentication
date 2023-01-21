@@ -8,28 +8,27 @@ import {db} from './Firebase'
 // Set the "capital" field of the city 'DC'
 
 
-export default function Todoitem({obj,onDelete}) {
-  const [toggle,setToggle]=useState(false)
+export default function Todoitem({obj,onDelete,filename}) {
 
-  useEffect(
-    ()=>{
-    const Ref = doc(db, "todos", `${obj.id}`);
+  const [toggle,setToggle]=useState(obj.isCompleted)
+  useEffect(()=>{
+    console.log(obj.id)
+    const Ref = doc(db,filename,`${obj.id}`);
     updateDoc(Ref, {
      isCompleted:toggle
-    });
-  },[toggle,obj.id])
+    }); 
+    return ()=>toggle
+    
+  },[toggle])
   
   
   
 
   return (
-    <div>
       
-      <ul>
-        <li className={toggle?"checked":null} onClick={()=>{setToggle(!toggle)}}>{obj.todo}<span className='close' onClick={()=>onDelete(obj)}>&#215;</span>
-        </li>
-      </ul>
+    <li className={toggle===true?"checked":null} onClick={()=>{setToggle(!toggle)}}>{obj.todo}<span className='close' onClick={()=>onDelete(obj)}>&#215;</span>
+    </li>
               
-    </div>
+    
   )
 }

@@ -21,6 +21,7 @@ body {
 }
 
 li{
+  word-wrap: break-word;
   border-radius: 9px;
   margin: 20px;
   box-shadow: 6px 6px 9px lightblue;
@@ -127,7 +128,7 @@ ul li.checked::before {
 }
 
 /* Style the input */
-input {
+.inputadd {
   margin: 0;
   border: none;
   border-radius: 0;
