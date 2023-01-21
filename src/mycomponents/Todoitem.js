@@ -12,7 +12,6 @@ export default function Todoitem({obj,onDelete,filename}) {
 
   const [toggle,setToggle]=useState(obj.isCompleted)
   useEffect(()=>{
-    console.log(obj.id)
     const Ref = doc(db,filename,`${obj.id}`);
     updateDoc(Ref, {
      isCompleted:toggle

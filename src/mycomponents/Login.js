@@ -35,7 +35,7 @@ export default function Login({loginSuccess,setFilename}) {
   const signup=async()=>{
     const ans=await doesUserExists(name)
     if(ans){
-      alert("username already exixts try another name")
+      alert("username already exists try another name")
     }else{
       
       console.log("Sign UP Successful",name)
