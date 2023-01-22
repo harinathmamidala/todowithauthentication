@@ -4,13 +4,13 @@ import {setDoc,doc,getDoc} from 'firebase/firestore'
 import { db } from './Firebase'
 
 
-export default function Login({loginSuccess,setFilename}) {
+export default function Login({loginSuccess,setFilename,catchName}) {
   const [clicklogin,setClicklogin]=useState(false)
   const [name,setName]=useState("");
   const [passw,setPassw]=useState("");
-  const [loggedin,setLoggedin]=useState(false);
-  const [displayName,setDisplayName]=useState('')
-  
+  const [loggedin,setLoggedin]=useState(catchName!==null);
+  const [displayName,setDisplayName]=useState(catchName===null?'':catchName)
+  console.log(catchName)
   const login=async() => {
   
     try{
@@ -18,6 +18,7 @@ export default function Login({loginSuccess,setFilename}) {
       if(!ans) alert("Incorrect username or password")
       else {
         console.log("login successful",name)
+        localStorage.setItem('qwe',name);
         setFilename(name)
         setClicklogin(!clicklogin)
         setDisplayName(name)
@@ -39,7 +40,7 @@ export default function Login({loginSuccess,setFilename}) {
     }else{
       
       console.log("Sign UP Successful",name)
-      
+      localStorage.setItem('qwe',name);
       setClicklogin(!clicklogin)
       await setDoc(doc(db,name,"0"), {password:passw ,id:0});
       setFilename(name);
@@ -73,7 +74,7 @@ export default function Login({loginSuccess,setFilename}) {
       
       
 
-      {loggedin?<h3>Hi {displayName} <button className='buttonL' onClick={()=>{setLoggedin(!loggedin); setFilename("todos");}}>Sign Out</button></h3> :
+      {loggedin?<h3>Hi {displayName} <button className='buttonL' onClick={()=>{setLoggedin(!loggedin); setFilename("todos"); localStorage.removeItem('qwe');}}>Sign Out</button></h3> :
           <button className="buttonL" onClick={()=>setClicklogin(!clicklogin) } > Login</button>
       }
       <div className='loginDiv' style={clicklogin?{display:"flex"}:{display:"none"}}>

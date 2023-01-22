@@ -8,11 +8,11 @@ import {collection,setDoc,deleteDoc,doc, orderBy,getDoc,getDocs} from 'firebase/
 
 
 function App() {
-
-  const [todos,setTodos]=useState([])
-  const [filename,setFilename]=useState('todos')
-
+  let name=localStorage.getItem("qwe");
   
+  const [todos,setTodos]=useState([])
+  const [filename,setFilename]=useState(name===null?'todos':name)
+  // console.log(localStorage.getItem("todos"))
   
   useEffect(()=>{
 
@@ -93,7 +93,7 @@ function App() {
 
   return (
    <div className='content'>
-    <Login loginSuccess={loginSuccess} setFilename={setFilename}/>
+    <Login loginSuccess={loginSuccess} setFilename={setFilename} catchName={name}/>
     <Header AddTodo={AddTodo}/>
     <TodoList array={todos} onDelete={onDelete} filename={filename}/>
    </div>
